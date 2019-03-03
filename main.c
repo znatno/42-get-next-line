@@ -6,7 +6,7 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 18:55:12 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/03 19:03:58 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/03 19:44:19 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,11 @@ int		main(int argc, char **argv)
 		fd = open(argv[1], O_RDONLY);
 	else
 		return (2);
-	printf("x10\n");
 	while (get_next_line(fd, &line) == 1)
 	{
-		printf("x18\n");
 		ft_putendl(line);
-		printf("x17\n");
 		free(line);
-		printf("x16\n");
 	}
-	printf("x19\n");
 	if (argc == 2)
 		close(fd);
 }
