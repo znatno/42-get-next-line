@@ -3,6 +3,7 @@
 # define BUF_SIZE 32
 # include <fcntl.h>
 # include "libft/libft.h"
+# include <stdio.h> //to delete
 
 int						get_next_line(const int fd, char **line);
 
