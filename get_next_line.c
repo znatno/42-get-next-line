@@ -6,7 +6,7 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:54:34 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/10 19:53:12 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/10 20:10:14 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,16 @@ static int		ft_clear(t_gnl *clr)
 
 static int		ft_rtrn_check(char *str, char **line, t_gnl *saved)
 {
-	char	*fin;
+	char	*l_end;
 
 	if (!str)
 		return (ft_clear(saved));
-	fin = ft_strchr(str, '\n');
-	if (fin != NULL)
+	l_end = ft_strchr(str, '\n');
+	if (l_end)
 	{
-		*fin = '\0';
+		*l_end = '\0';
 		*line = ft_strdup(str);
-		ft_strncpy(str, &fin[1], ft_strlen(&fin[1]) + 1);
+		ft_strncpy(str, &l_end[1], ft_strlen(&l_end[1]) + 1);
 		return (GOING_MORE);
 	}
 	else if (ft_strlen(str) > 0)

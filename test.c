@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include <fcntl.>
-#include "includes/gnl_header.h"
+#include "get_next_line.h"
 
 int		main(int ac, char *av[])
 {
@@ -15,7 +14,7 @@ int		main(int ac, char *av[])
 		while (++i < ac)
 		{
 			fd[i] = open(*(av++), O_RDONLY);
-			if ((ret = gnl(fd, &temp)) > 0)
+			if ((ret = get_next_line(fd[i], &temp)) > 0)
 				printf("Readed: %s | ret: %d\n", temp, ret);
 			else
 			{
@@ -29,7 +28,7 @@ int		main(int ac, char *av[])
 			free(temp);
 			temp = NULL;
 		}
-		printf("|Successed read 1 line from each file.|\n", );
+		printf("|Successed read 1 line from each file.|\n");
 		system("leaks test");
 		while (--i)
 			close(fd[i]);
