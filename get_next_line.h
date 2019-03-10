@@ -1,12 +1,11 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # define BUF_SIZE 32
-# define CHECKKK 0
+# define GOING_MORE 1
+# define END_OF_INPUT 0
+# define ERROR -1
 # include <fcntl.h>
 # include "libft/libft.h"
-# include <stdio.h> //to delete
-
-
 
 int						get_next_line(const int fd, char **line);
 
