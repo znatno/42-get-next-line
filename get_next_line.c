@@ -6,7 +6,7 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:54:34 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/03 19:44:05 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/10 15:23:03 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ static t_gnl	*create_list(const int fd)
 {
 		t_gnl	*new;
 
-		if (!(new = (t_gnl*)malloc(sizeof(*new))))
-			return (NULL);
-		new = (t_gnl*)malloc(sizeof(*new));
-		new->fd = fd;
-		new->buff = ft_strnew(0);
-		new->tmp = NULL;
-		new->next = NULL;
-		return (new);
+		if (new = (t_gnl*)malloc(sizeof(*new)))
+		{
+			new->fd = fd;
+			new->buff = ft_strnew(0);
+			new->tmp = NULL;
+			new->next = NULL;
+			return (new);
+		}
+		return (NULL);
 }
 
 /*
@@ -42,14 +43,19 @@ static t_gnl	*create_list(const int fd)
 
 int						get_next_line(const int fd, char **line)
 {
-	static t_gnl	*list;
-	//char			*buff;
+	static t_gnl	*saved;
+	char			buff[BUF_SIZE + 1];
+	//char			**str;
+	int				ret;
 
 	if (fd < 0 || !line)
 		return (-1);
-	if (!(list= (t_gnl*)malloc(sizeof(*list))))
-		return (-1);
-	list = create_list(fd);
-	printf("x08\n");
+	if (!*saved)
+	saved = create_list(fd);
+	ret = read(fd, buff, BUF_SIZE);
+	buff[ret] = '\0';
+	saved->buff = buff;
+	printf("%s\n", saved->buff);
+	free(saved);
 	return (0);
 }
