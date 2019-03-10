@@ -6,13 +6,13 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:54:34 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/10 18:21:41 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/10 18:46:36 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static t_gnl	*new_list(const int fd)
+static t_gnl	*ft_new_list(const int fd)
 {
 		t_gnl	*new;
 
@@ -26,13 +26,34 @@ static t_gnl	*new_list(const int fd)
 }
 
 // провірка на мультидескрипторність
-int				fd_count(t_gnl *saved, int fd)
+int				ft_fd_check(t_gnl *saved, int fd)
 {
+	t_gnl	*clist;
+	t_gnl	*new;
+	t_gnl	*add;
 
+	new = NULL;
+	clist = saved;
+	while (clist)
+	{
+		if (clist->fd == fd)
+			return (clist);
+		if (!(clist->next))
+		{
+			new = ft_new_list(fd);
+			add = clist;
+			while (add->next)
+				add = add->next;
+			add->next = new;
+			return (new);
+		}
+		clist = clist->next;
+	}
+	return (NULL);
 }
 
 /*
-** int				check_list()
+** int				ft_ret_check()
 ** {
 ** // провірка чи віддаємо
 ** }
@@ -55,9 +76,9 @@ int						get_next_line(const int fd, char **line)
 	if (fd < 0 || !line || BUF_SIZE <= 0)
 		return (-1);
 	if (!saved)
-		saved = new_list(fd);
+		saved = ft_new_list(fd);
 	// провірка фд
-	now = saved;
+	now = ft_fd_check(saved, fd);
 	while (!(ft_strchr(now->tmp, '\n')))
 	{
 		ret = read(fd, buff, BUF_SIZE);
@@ -69,7 +90,6 @@ int						get_next_line(const int fd, char **line)
 		now->text = ft_strjoin(now->tmp, buff);
 		free(now->tmp);
 		now->tmp = now->text;
-		printf("%s\n", now->tmp);
 	}
 	return CHECKKK;
 }
