@@ -6,13 +6,13 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:54:34 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/10 18:02:43 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/10 18:21:41 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static t_gnl	*create_list(const int fd)
+static t_gnl	*new_list(const int fd)
 {
 		t_gnl	*new;
 
@@ -25,12 +25,11 @@ static t_gnl	*create_list(const int fd)
 		return (new);
 }
 
-/*
-** int				fd_count()
-** {
-** // провірка на мультидескрипторність
-** }
-*/
+// провірка на мультидескрипторність
+int				fd_count(t_gnl *saved, int fd)
+{
+
+}
 
 /*
 ** int				check_list()
@@ -56,7 +55,7 @@ int						get_next_line(const int fd, char **line)
 	if (fd < 0 || !line || BUF_SIZE <= 0)
 		return (-1);
 	if (!saved)
-		saved = create_list(fd);
+		saved = new_list(fd);
 	// провірка фд
 	now = saved;
 	while (!(ft_strchr(now->tmp, '\n')))
