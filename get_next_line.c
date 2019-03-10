@@ -6,7 +6,7 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:54:34 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/10 15:33:41 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/10 18:02:43 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static t_gnl	*create_list(const int fd)
 		if (!(new = (t_gnl*)malloc(sizeof(*new))))
 				return (NULL);
 		new->fd = fd;
-		new->buff = ft_strnew(0);
-		new->tmp = NULL;
+		new->tmp = ft_strnew(0);
+		new->text = NULL;
 		new->next = NULL;
 		return (new);
 }
@@ -42,8 +42,8 @@ static t_gnl	*create_list(const int fd)
 int						get_next_line(const int fd, char **line)
 {
 	static t_gnl	*saved;
+	t_gnl			*now;
 	char			buff[BUF_SIZE + 1];
-	//char			**str;
 	int				ret;
 
 
@@ -57,10 +57,20 @@ int						get_next_line(const int fd, char **line)
 		return (-1);
 	if (!saved)
 		saved = create_list(fd);
-	ret = read(fd, buff, BUF_SIZE);
-	buff[ret] = '\0';
-	saved->buff = buff;
-	printf("%s\n", saved->buff);
-	//free(saved);
-	return (1);
+	// провірка фд
+	now = saved;
+	while (!(ft_strchr(now->tmp, '\n')))
+	{
+		ret = read(fd, buff, BUF_SIZE);
+		if (ret == -1)
+			return (-1);
+		if (ret == 0)
+			return CHECKKK;
+		buff[ret] = '\0';
+		now->text = ft_strjoin(now->tmp, buff);
+		free(now->tmp);
+		now->tmp = now->text;
+		printf("%s\n", now->tmp);
+	}
+	return CHECKKK;
 }
