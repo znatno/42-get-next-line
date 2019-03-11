@@ -6,7 +6,7 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:54:34 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/10 20:10:14 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/11 14:27:02 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static t_gnl	*ft_new_list(const int fd)
 {
-		t_gnl	*new;
+	t_gnl	*new;
 
-		if (!(new = (t_gnl*)malloc(sizeof(*new))))
-				return (NULL);
-		new->fd = fd;
-		new->tmp = ft_strnew(0);
-		new->text = NULL;
-		new->next = NULL;
-		return (new);
+	if (!(new = (t_gnl*)malloc(sizeof(*new))))
+		return (NULL);
+	new->fd = fd;
+	new->tmp = ft_strnew(0);
+	new->text = NULL;
+	new->next = NULL;
+	return (new);
 }
 
 static t_gnl	*ft_fd_check(t_gnl *saved, int fd)
@@ -88,7 +88,6 @@ static int		ft_rtrn_check(char *str, char **line, t_gnl *saved)
 	}
 	return (ft_clear(saved));
 }
-
 
 int				get_next_line(const int fd, char **line)
 {

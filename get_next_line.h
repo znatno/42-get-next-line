@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibohun <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/11 14:27:29 by ibohun            #+#    #+#             */
+/*   Updated: 2019/03/11 14:28:06 by ibohun           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # define BUF_SIZE 32
@@ -7,7 +19,7 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 
-int						get_next_line(const int fd, char **line);
+int				get_next_line(const int fd, char **line);
 
 typedef struct	s_gnl
 {
