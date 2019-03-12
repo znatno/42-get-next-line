@@ -6,7 +6,7 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:54:34 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/11 14:27:02 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/12 12:27:50 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,23 +93,23 @@ int				get_next_line(const int fd, char **line)
 {
 	static t_gnl	*saved;
 	t_gnl			*now;
-	char			buff[BUF_SIZE + 1];
+	char			buf[BUFF_SIZE + 1];
 	int				ret;
 
-	if (fd < 0 || !line || BUF_SIZE <= 0)
+	if (fd < 0 || !line || BUFF_SIZE <= 0)
 		return (ERROR);
 	if (!saved)
 		saved = ft_new_list(fd);
 	now = ft_fd_check(saved, fd);
 	while (!(ft_strchr(now->tmp, '\n')))
 	{
-		ret = read(fd, buff, BUF_SIZE);
+		ret = read(fd, buf, BUFF_SIZE);
 		if (ret == -1)
 			return (ERROR);
 		if (ret == 0)
 			return (ft_rtrn_check(now->tmp, line, saved));
-		buff[ret] = '\0';
-		now->text = ft_strjoin(now->tmp, buff);
+		buf[ret] = '\0';
+		now->text = ft_strjoin(now->tmp, buf);
 		free(now->tmp);
 		now->tmp = now->text;
 	}
