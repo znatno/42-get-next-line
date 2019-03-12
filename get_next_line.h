@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibohun <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:27:29 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/11 14:28:06 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/12 15:01:52 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUF_SIZE 32
+# define BUFF_SIZE 32
 # define GOING_MORE 1
 # define END_OF_INPUT 0
 # define ERROR -1
