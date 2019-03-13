@@ -6,7 +6,7 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:54:34 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/12 12:39:05 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/13 13:25:13 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int		ft_rtrn_check(char *str, char **line, t_gnl *saved)
 {
 	char	*l_end;
 
-	if (!str)
+	if (!(str))
 		return (ft_clear(saved));
 	l_end = ft_strchr(str, '\n');
 	if (l_end)
@@ -96,9 +96,9 @@ int				get_next_line(const int fd, char **line)
 	char			buf[BUFF_SIZE + 1];
 	int				ret;
 
-	if (fd < 0 || !line || BUFF_SIZE <= 0)
+	if (fd < 0 || !(line) || BUFF_SIZE <= 0)
 		return (ERROR);
-	if (!saved)
+	if (!(saved))
 		saved = ft_new_list(fd);
 	now = ft_fd_check(saved, fd);
 	while (!(ft_strchr(now->tmp, '\n')))
