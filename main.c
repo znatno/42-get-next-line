@@ -6,7 +6,7 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 18:55:12 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/12 15:01:06 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/13 14:07:38 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 		close(fd);
 	printf("%d\n", fd);
-	system("leaks a.out");
+	system("leaks -q test");
 }

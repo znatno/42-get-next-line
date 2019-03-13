@@ -6,7 +6,7 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:54:34 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/13 13:25:13 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/13 14:21:20 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,29 +51,14 @@ static t_gnl	*ft_fd_check(t_gnl *saved, int fd)
 	return (NULL);
 }
 
-static int		ft_clear(t_gnl *clr)
-{
-	t_gnl *t;
-
-	while (clr)
-	{
-		if (clr->text)
-			free(clr->text);
-		t = clr->next;
-		free(clr);
-		clr = t;
-	}
-	return (END_OF_INPUT);
-}
-
-static int		ft_rtrn_check(char *str, char **line, t_gnl *saved)
+static int		ft_rtrn_check(char *str, char **line)
 {
 	char	*l_end;
 
 	if (!(str))
-		return (ft_clear(saved));
+		return (0);
 	l_end = ft_strchr(str, '\n');
-	if (l_end)
+	if (l_end != NULL)
 	{
 		*l_end = '\0';
 		*line = ft_strdup(str);
@@ -86,7 +71,7 @@ static int		ft_rtrn_check(char *str, char **line, t_gnl *saved)
 		*str = '\0';
 		return (GOING_MORE);
 	}
-	return (ft_clear(saved));
+	return (0);
 }
 
 int				get_next_line(const int fd, char **line)
@@ -96,7 +81,7 @@ int				get_next_line(const int fd, char **line)
 	char			buf[BUFF_SIZE + 1];
 	int				ret;
 
-	if (fd < 0 || !(line) || BUFF_SIZE <= 0)
+	if (fd < 0 || !line || BUFF_SIZE <= 0)
 		return (ERROR);
 	if (!(saved))
 		saved = ft_new_list(fd);
@@ -107,11 +92,11 @@ int				get_next_line(const int fd, char **line)
 		if (ret == -1)
 			return (ERROR);
 		if (ret == 0)
-			return (ft_rtrn_check(now->tmp, line, saved));
+			return (ft_rtrn_check(now->tmp, line));
 		buf[ret] = '\0';
 		now->text = ft_strjoin(now->tmp, buf);
 		free(now->tmp);
 		now->tmp = now->text;
 	}
-	return (ft_rtrn_check(now->tmp, line, saved));
+	return (ft_rtrn_check(now->tmp, line));
 }

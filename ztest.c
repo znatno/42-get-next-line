@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ztest.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 13:26:31 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/13 13:27:22 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/03/13 13:37:38 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		main(int ac, char *av[])
 			temp = NULL;
 		}
 		printf("|Successed read 1 line from each file.|\n");
-		system("leaks test");
+		system("leaks -q test");
 		while (--i)
 			close(fd[i]);
 	}
