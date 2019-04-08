@@ -6,7 +6,7 @@
 /*   By: ibohun <ibohun@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 18:55:12 by ibohun            #+#    #+#             */
-/*   Updated: 2019/03/13 14:07:38 by ibohun           ###   ########.fr       */
+/*   Updated: 2019/04/08 14:12:05 by ibohun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ int		main(int argc, char **argv)
 		fd = open(argv[1], O_RDONLY);
 	else
 		return (2);
-	printf("%d\n", fd);
+	printf("fd: %d\n", fd);
 	while (get_next_line(fd, &line) == 1)
 	{
 		ft_putendl(line);
 		free(line);
 	}
-	printf("%d\n", fd);
+	printf("fd: %d\n", fd);
 	if (argc == 2)
 		close(fd);
-	printf("%d\n", fd);
+	printf("fd: %d\n", fd);
 	system("leaks -q test");
 }
